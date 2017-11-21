@@ -1,0 +1,31 @@
+@model IEnumerable<tilrepo.Models.til>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Today I learned feed</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+
+@foreach (var item in Model) {
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <p>@Html.DisplayFor(modelItem => item.content)</p> 
+            <span class="label label-info">@Html.DisplayFor(modelItem => item.tags)</span>
+            <p>
+                @Html.DisplayFor(modelItem => item.reference)                
+            </p>
+            <div class="panel-footer">
+                @Html.DisplayFor(modelItem => item.addedOn)
+                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+            </div>
+            
+        </div>
+    </div>
+}
